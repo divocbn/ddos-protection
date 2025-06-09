@@ -10,12 +10,18 @@ interface CaptchaImageRef {
   regenerate: () => Promise<void>
 }
 
-export const CaptchaImage = forwardRef<CaptchaImageRef>(function CaptchaImage(_, ref) {
+const CaptchaImageComponent = forwardRef<CaptchaImageRef>((_, ref) => {
   const [captcha, setCaptcha] = useState<{ image: string } | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const generateNewCaptcha = async () => {
-    const data = await generateCaptcha()
-    setCaptcha(data)
+    setIsLoading(true)
+    try {
+      const data = await generateCaptcha()
+      setCaptcha(data)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -26,7 +32,7 @@ export const CaptchaImage = forwardRef<CaptchaImageRef>(function CaptchaImage(_,
     regenerate: generateNewCaptcha
   }))
 
-  if (!captcha) {
+  if (!captcha || isLoading) {
     return (
       <div className="w-full h-16 bg-black/10 rounded-lg animate-pulse" />
     )
@@ -45,13 +51,18 @@ export const CaptchaImage = forwardRef<CaptchaImageRef>(function CaptchaImage(_,
       <button
         type="button"
         onClick={generateNewCaptcha}
+        disabled={isLoading}
         className={cn(
           "text-sm text-white/60 hover:text-white",
-          "flex items-center gap-1"
+          "flex items-center gap-1",
+          isLoading && "opacity-50 cursor-not-allowed"
         )}
       >
-        <ReloadIcon />  Refresh
+        <ReloadIcon className={cn(isLoading && "animate-spin")} /> Refresh
       </button>
     </div>
   )
-}) 
+})
+
+CaptchaImageComponent.displayName = "CaptchaImageComponent"
+export { CaptchaImageComponent }

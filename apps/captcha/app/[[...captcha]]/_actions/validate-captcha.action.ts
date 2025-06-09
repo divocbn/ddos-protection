@@ -35,7 +35,6 @@ export const validateCaptcha = async ({
     }
   }
 
-  console.log(ip);
   await redis.del(`fastify-rate-limit-${ip}`)
 
   return {
