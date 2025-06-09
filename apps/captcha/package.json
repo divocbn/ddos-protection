@@ -11,12 +11,16 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@ddos-protection/redis": "workspace:*",
     "@ddos-protection/ui": "workspace:*",
+    "@radix-ui/react-icons": "^1.3.2",
     "@sglara/cn": "^1.0.0",
+    "nanoid": "^5.1.5",
     "next": "^15.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "sf-pro": "^1.0.4"
+    "sf-pro": "^1.0.4",
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
     "@ddos-protection/eslint-config": "workspace:*",
