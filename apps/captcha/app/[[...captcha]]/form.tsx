@@ -59,7 +59,7 @@ export default function CaptchaFormComponent() {
   }
 
   return (
-    <div className="flex flex-col max-w-7xl w-full py-20">
+    <div className="flex flex-col max-w-7xl w-full py-20 px-2">
       <h1 className={cn("font-semibold text-3xl tracking-[0.3px]", SfProDisplay.className)}>
         Captcha
       </h1>
@@ -101,7 +101,7 @@ export default function CaptchaFormComponent() {
           className={cn(
             "mt-6 px-6 py-3 bg-white text-black rounded-lg font-medium",
             "flex items-center gap-2",
-            "hover:bg-white/90 transition-colors",
+            "hover:bg-white/90 transition-colors, cursor-pointer",
             "disabled:opacity-50 disabled:cursor-not-allowed"
           )}
         >

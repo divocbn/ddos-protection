@@ -5,7 +5,6 @@ import { cn } from "@sglara/cn"
 
 import { generateCaptcha } from '@/app/_actions/generate-captcha.action'
 import { ReloadIcon } from '@radix-ui/react-icons'
-import Image from 'next/image'
 
 interface CaptchaImageRef {
   regenerate: () => Promise<void>
@@ -36,7 +35,7 @@ export const CaptchaImage = forwardRef<CaptchaImageRef>(function CaptchaImage(_,
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="w-full h-16 bg-black rounded-lg p-2">
-        <Image
+        <img
           src={captcha.image}
           className="w-full h-full object-contain"
           alt="Captcha"
