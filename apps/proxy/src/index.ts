@@ -6,19 +6,21 @@ const server = Fastify({
   logger: true
 });
 
+// note(module): apparently generates a redis key with "fastify-rate-limit-(ip)" - so for reset the ratelimit we can delete that? 
 await server.register(rateLimit, {
-  max: 100,
-  timeWindow: '1 minute'
+  max: 10,
+  timeWindow: '1 minute',
+  redis: redis,
+  keyGenerator: (request: FastifyRequest) => request.ip,
 });
 
-server.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
-  return { "test": 0 };
+server.get('/health', async () => {
+  return { status: "ok" };
 });
 
 try {
   await server.listen({ port: 3002, host: '0.0.0.0' });
 
-  console.log(await redis.get("test"));
   console.log('Server is running on http://localhost:3002');
 } catch (err) {
   server.log.error(err);
