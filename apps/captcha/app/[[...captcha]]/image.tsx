@@ -3,7 +3,7 @@
 import { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
 import { cn } from "@sglara/cn"
 
-import { generateCaptcha } from '@/app/_actions/generate-captcha.action'
+import { generateCaptcha } from './_actions/generate-captcha.action'
 import { ReloadIcon } from '@radix-ui/react-icons'
 
 interface CaptchaImageRef {
