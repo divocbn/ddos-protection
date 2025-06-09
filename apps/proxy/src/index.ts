@@ -26,8 +26,6 @@ async function main() {
   });
 
   server.setErrorHandler((error: Error & { statusCode?: number }, request: FastifyRequest, reply: FastifyReply) => {
-    console.log(request.ip);
-    
     if (error.statusCode === 429) {
       proxy.web(request.raw, reply.raw,
         {
