@@ -8,7 +8,6 @@
     "dev": "pnpm run with-env tsx watch src/index.ts",
     "lint": "eslint .",
     "check-types": "tsc --noEmit",
-
     "with-env": "dotenv -e .env --"
   },
   "dependencies": {
@@ -17,6 +16,7 @@
     "@fastify/rate-limit": "^10.3.0",
     "dotenv-cli": "^8.0.0",
     "fastify": "^5.3.3",
+    "http-proxy": "^1.18.1",
     "tsdown": "^0.12.7",
     "tsx": "^4.19.4"
   },
@@ -24,6 +24,7 @@
     "@ddos-protection/eslint-config": "workspace:*",
     "@ddos-protection/tailwind-config": "workspace:*",
     "@ddos-protection/typescript-config": "workspace:*",
+    "@types/http-proxy": "^1.17.16",
     "@types/node": "^20.19.0",
     "eslint": "^9.28.0",
     "typescript": "5.8.2"
