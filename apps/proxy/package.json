@@ -8,6 +8,7 @@
     "dev": "bun --watch src/index.ts"
   },
   "dependencies": {
+    "@ddos-protection/redis": "*",
     "@fastify/rate-limit": "^9.0.0",
     "fastify": "^4.24.3"
   },

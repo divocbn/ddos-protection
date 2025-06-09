@@ -1,5 +1,5 @@
 {
-  "extends": "@ddos-protection/typescript-config/nextjs.json",
+  "extends": "@ddos-protection/typescript-config/base.json",
   "include": [
     "**/*.ts",
   ],
