@@ -2,18 +2,13 @@
 
 import sharp from 'sharp'
 import { redis } from '@ddos-protection/redis'
-import { headers } from 'next/headers'
 import { nanoid } from 'nanoid'
+import { getIp } from '@/lib/utils'
 
 export async function generateCaptcha() {
   const text = nanoid(6)
-  const header = headers()
 
-  // ??? - same shi as in validate captcha
-  const forwardedFor = (await header).get('x-forwarded-for')
-  const realIp = (await header).get('x-real-ip')
-
-  const ip = forwardedFor?.split(',')[0] || realIp || 'unknown'
+  const ip = await getIp()
 
   const image = new sharp({
     create: {

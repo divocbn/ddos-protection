@@ -44,6 +44,8 @@ export default function CaptchaFormComponent() {
 
       if (!result.success) {
         handleValidationFailure()
+      } else {
+        window.location.reload()
       }
     } catch (error) {
       setState({

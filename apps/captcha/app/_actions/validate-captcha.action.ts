@@ -1,7 +1,7 @@
 'use server'
 
 import { redis } from '@ddos-protection/redis'
-import { headers } from 'next/headers'
+import { getIp } from '@/lib/utils'
 
 export interface ValidateCaptchaOptions {
   input: string
@@ -10,13 +10,7 @@ export interface ValidateCaptchaOptions {
 export const validateCaptcha = async ({
   input
 }: ValidateCaptchaOptions) => {
-  const header = headers()
-  
-  // ??? - idk what vercel did here to next js 15 but somehow it needs to be awaited???
-  const forwardedFor = (await header).get('x-forwarded-for')
-  const realIp = (await header).get('x-real-ip')
-
-  const ip = forwardedFor?.split(',')[0] || realIp || 'unknown'
+  const ip = await getIp()
 
   const captcha = await redis.get(`captcha:${ip}`)
 
@@ -40,6 +34,9 @@ export const validateCaptcha = async ({
       message: 'Invalid captcha. Please try again.'
     }
   }
+
+  console.log(ip);
+  await redis.del(`fastify-rate-limit-${ip}`)
 
   return {
     success: true,
