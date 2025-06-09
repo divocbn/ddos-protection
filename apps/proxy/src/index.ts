@@ -8,12 +8,17 @@ const server = Fastify({
   logger: true
 });
 
-// note(module): previously i wanted to use fastify's version of http-proxy, 
-//               but its limited to only 1 proxy per url
-const proxy = createProxyServer({ changeOrigin: true });
+const proxy = createProxyServer({ 
+  changeOrigin: true,
+  followRedirects: true,
+  secure: false,
+  xfwd: true,
+  preserveHeaderKeyCase: true,
+  autoRewrite: true,
+  protocolRewrite: 'http'
+});
 
 async function main() {
-  // note(module): apparently generates a redis key with "fastify-rate-limit-(ip)" - so for reset the ratelimit we can delete that? 
   await server.register(rateLimit, {
     max: 10,
     timeWindow: '2 minutes',
@@ -29,7 +34,7 @@ async function main() {
     if (error.statusCode === 429) {
       proxy.web(request.raw, reply.raw,
         {
-          target: env.CAPTCHA_URL
+          target: env.CAPTCHA_URL,
         },
         (err) => {
           if (err) {
@@ -47,9 +52,11 @@ async function main() {
 
   server.all('/*', async (req: FastifyRequest, reply: FastifyReply) => {
     return new Promise<void>((resolve, reject) => {
+      const targetUrl = new URL(req.url, env.ORIGIN_URL);
+      
       proxy.web(req.raw, reply.raw,
         {
-          target: env.ORIGIN_URL
+          target: env.ORIGIN_URL,
         }, 
         (err) => {
           if (err) {
