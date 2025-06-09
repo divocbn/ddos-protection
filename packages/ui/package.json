@@ -24,9 +24,9 @@
     "react": "^19"
   },
   "devDependencies": {
-    "@ddos-protection/eslint-config": "*",
-    "@ddos-protection/tailwind-config": "*",
-    "@ddos-protection/typescript-config": "*",
+    "@ddos-protection/eslint-config": "workspace:*",
+    "@ddos-protection/tailwind-config": "workspace:*",
+    "@ddos-protection/typescript-config": "workspace:*",
     "@tailwindcss/cli": "^4.1.5",
     "@types/react": "^19.1.0",
     "eslint": "^9.28.0",

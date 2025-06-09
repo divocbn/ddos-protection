@@ -1,6 +1,10 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
+  "globalEnv": [
+    "NODE_ENV",
+    "REDIS_URL"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

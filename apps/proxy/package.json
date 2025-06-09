@@ -5,21 +5,26 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "dev": "bun --watch src/index.ts",
+    "dev": "pnpm run with-env tsx watch src/index.ts",
     "lint": "eslint .",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+
+    "with-env": "dotenv -e .env --"
   },
   "dependencies": {
-    "@ddos-protection/redis": "*",
-    "@fastify/http-proxy": "9.x",
-    "@fastify/rate-limit": "^9.0.0",
-    "fastify": "^4.24.3"
+    "@ddos-protection/redis": "workspace:*",
+    "@fastify/http-proxy": "~11.1.2",
+    "@fastify/rate-limit": "^10.3.0",
+    "dotenv-cli": "^8.0.0",
+    "fastify": "^5.3.3",
+    "tsdown": "^0.12.7",
+    "tsx": "^4.19.4"
   },
   "devDependencies": {
-    "@ddos-protection/eslint-config": "*",
-    "@ddos-protection/tailwind-config": "*",
-    "@ddos-protection/typescript-config": "*",
-    "@types/node": "^20.10.0",
+    "@ddos-protection/eslint-config": "workspace:*",
+    "@ddos-protection/tailwind-config": "workspace:*",
+    "@ddos-protection/typescript-config": "workspace:*",
+    "@types/node": "^20.19.0",
     "eslint": "^9.28.0",
     "typescript": "5.8.2"
   }

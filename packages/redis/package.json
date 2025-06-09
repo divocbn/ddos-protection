@@ -13,8 +13,8 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@ddos-protection/eslint-config": "*",
-    "@ddos-protection/typescript-config": "*",
+    "@ddos-protection/eslint-config": "workspace:*",
+    "@ddos-protection/typescript-config": "workspace:*",
     "@types/node": "^22.10.10",
     "eslint": "^9.19.0",
     "prettier": "^3.4.2",
