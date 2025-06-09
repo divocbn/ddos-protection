@@ -1,5 +1,6 @@
-import Fastify, { FastifyRequest, FastifyReply } from 'fastify';
+import Fastify, { FastifyRequest, FastifyReply, FastifyError, errorCodes } from 'fastify';
 import rateLimit from '@fastify/rate-limit';
+import fastifyProxy from '@fastify/http-proxy';
 import { redis } from '@ddos-protection/redis';
 
 const server = Fastify({
@@ -14,6 +15,12 @@ await server.register(rateLimit, {
   keyGenerator: (request: FastifyRequest) => request.ip,
 });
 
+await server.register(fastifyProxy, {
+  upstream: 'http://habbo.de',
+  prefix: '/test',
+  http2: false
+});
+
 server.get('/health', async () => {
   return { status: "ok" };
 });
@@ -25,4 +32,4 @@ try {
 } catch (err) {
   server.log.error(err);
   process.exit(1);
-} 
+}
