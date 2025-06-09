@@ -12,15 +12,17 @@
   },
   "dependencies": {
     "@ddos-protection/ui": "workspace:*",
+    "@sglara/cn": "^1.0.0",
     "next": "^15.3.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "sf-pro": "^1.0.4"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^15.3.0",
     "@ddos-protection/eslint-config": "workspace:*",
     "@ddos-protection/tailwind-config": "workspace:*",
     "@ddos-protection/typescript-config": "workspace:*",
+    "@next/eslint-plugin-next": "^15.3.0",
     "@tailwindcss/postcss": "^4.1.5",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.0",
