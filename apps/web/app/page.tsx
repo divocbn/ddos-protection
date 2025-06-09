@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Card } from "@repo/ui/card";
-import { Gradient } from "@repo/ui/gradient";
-import { TurborepoLogo } from "@repo/ui/turborepo-logo";
+import { Card } from "@ddos-protection/ui/card";
+import { Gradient } from "@ddos-protection/ui/gradient";
+import { TurborepoLogo } from "@ddos-protection/ui/turborepo-logo";
 
 const LINKS = [
   {
