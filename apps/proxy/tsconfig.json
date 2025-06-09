@@ -1,0 +1,7 @@
+{
+  "extends": "@ddos-protection/typescript-config/nextjs.json",
+  "include": [
+    "**/*.ts",
+  ],
+  "exclude": ["node_modules"]
+}
