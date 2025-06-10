@@ -6,15 +6,39 @@ The solution implements rate limiting and CAPTCHA verification to protect your a
 
 ## How to setup
 
+### 1. Install Dependencies  
+Run the following commands:  
 ```sh
-pnpm i
-npm i
+pnpm install
+npm install
 ```
 
-You'll need to set up environment variables for both the captcha and proxy applications. Clone and edit the following files:
+### 2. Configure Environment Variables  
+Set up the required environment variables for both the captcha and proxy applications.  
 
-- `apps/captcha/.env.example`
-- `apps/proxy/.env.example`
+1. Copy the example files:  
+   ```sh
+   cp apps/captcha/.env.example apps/captcha/.env
+   cp apps/proxy/.env.example apps/proxy/.env
+   ```  
+2. Edit the `.env` files with your configuration:  
+
+   #### **Captcha Service** (`apps/captcha/.env`)  
+   ```env
+   REDIS_URL="redis://localhost:6379"  # Redis connection URL
+   ```  
+
+   #### **Proxy Service** (`apps/proxy/.env`)  
+   ```env
+   REDIS_URL="redis://localhost:6379"  # Redis connection URL
+   NODE_ENV="development"              # Runtime environment  
+
+   # Origin site to be secured and proxied  
+   ORIGIN_URL="https://internal.cleverpush.de"  
+
+   # URL of the captcha service (e.g., http://localhost:3000)  
+   CAPTCHA_URL="http://captcha.cleverpush.de"  
+   ```  
 
 ### Tech Stack
 
