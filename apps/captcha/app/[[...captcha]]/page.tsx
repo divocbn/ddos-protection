@@ -7,6 +7,7 @@ import { UpdateIcon } from "@radix-ui/react-icons"
 import { CaptchaImageComponent } from "./image"
 
 import { validateCaptcha } from "./_actions/validate-captcha.action"
+import { CaptchaImageRef } from "./_types/captcha-image.ref"
 
 interface ValidationState {
   success: boolean
@@ -22,7 +23,7 @@ export default function ProtectionCaptchaPage() {
     message: ""
   })
 
-  const captchaRef = useRef<{ regenerate: () => Promise<void> }>(null)
+  const captchaRef = useRef<CaptchaImageRef>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)

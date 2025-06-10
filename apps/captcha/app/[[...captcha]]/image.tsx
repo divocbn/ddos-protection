@@ -5,10 +5,7 @@ import { cn } from "@sglara/cn"
 
 import { generateCaptcha } from './_actions/generate-captcha.action'
 import { ReloadIcon } from '@radix-ui/react-icons'
-
-interface CaptchaImageRef {
-  regenerate: () => Promise<void>
-}
+import { CaptchaImageRef } from './_types/captcha-image.ref'
 
 const CaptchaImageComponent = forwardRef<CaptchaImageRef>((_, ref) => {
   const [captcha, setCaptcha] = useState<{ image: string } | null>(null)
